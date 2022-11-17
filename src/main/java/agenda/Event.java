@@ -46,7 +46,18 @@ public class Event {
         LocalDate end = myStart.plus(myDuration).toLocalDate();
         return aDay.isAfter(start) && aDay.isBefore(end) || (aDay.isEqual(start) || aDay.isEqual(end));
     }
-   
+
+    public LocalDateTime getEnd() {
+        return LocalDateTime.from(myStart.plus(myDuration));
+    }
+
+    public boolean isAtSameTime(Event other) {
+        LocalDateTime myEnd = this.getEnd();
+        LocalDateTime otherStart = other.getStart();
+        LocalDateTime otherEnd = other.getEnd();
+        return  otherStart.isAfter(myStart) && otherEnd.isBefore(myEnd) || (otherStart.isEqual(myStart) || otherEnd.isEqual(myEnd));
+    }
+
     /**
      * @return the myTitle
      */

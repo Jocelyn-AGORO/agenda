@@ -77,11 +77,14 @@ public class FixedTerminationEvent extends RepetitiveEvent {
         if(getStart().toLocalDate().isEqual(aDay)) {
             isInDay = true;
         }else {
+            LocalDate dateOccurence = getStart().toLocalDate();
             if (!getExceptions().contains(aDay)) {
-                LocalDate dateOccurence = getStart().toLocalDate();
                 for (int i = 0; i < getNumberOfOccurrences(); i++) {
-                    dateOccurence.plus(1, getFrequency());
+                    dateOccurence = dateOccurence.plus(1, getFrequency());
                     isInDay = dateOccurence.isEqual(aDay);
+                    if(isInDay) {
+                        break;
+                    }
                 }
             }
         }
