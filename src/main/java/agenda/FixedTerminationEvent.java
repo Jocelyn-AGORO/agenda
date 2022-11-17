@@ -82,11 +82,6 @@ public class FixedTerminationEvent extends RepetitiveEvent {
                 for (int i = 0; i < getNumberOfOccurrences(); i++) {
                     dateOccurence.plus(1, getFrequency());
                     isInDay = dateOccurence.isEqual(aDay);
-                    /*LocalDate debut = dateOccurence;
-                    LocalDate fin = debut.plusDays(getDuration().toDays());
-                    isInDay = ((aDay.isEqual(debut)) || (aDay.isEqual(fin))) || (aDay.isAfter(debut) && aDay.isBefore(fin));
-                    dateOccurence = dateOccurence.plusDays(getFrequency().getDuration().toDays());
-                    */
                 }
             }
         }
