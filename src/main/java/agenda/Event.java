@@ -1,5 +1,7 @@
 package agenda;
 
+ //import jdk.vm.ci.meta.Local;
+
 import java.time.*;
 
 public class Event {
@@ -40,8 +42,9 @@ public class Event {
      * @return true if the event occurs on that day, false otherwise
      */
     public boolean isInDay(LocalDate aDay) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        LocalDate start = myStart.toLocalDate();
+        LocalDate end = myStart.plus(myDuration).toLocalDate();
+        return aDay.isAfter(start) && aDay.isBefore(end) || (aDay.isEqual(start) || aDay.isEqual(end));
     }
    
     /**
@@ -58,7 +61,6 @@ public class Event {
         return myStart;
     }
 
-
     /**
      * @return the myDuration
      */
@@ -66,6 +68,10 @@ public class Event {
         return myDuration;
     }
 
-   
-    
+    @Override
+    public String toString() {
+        return "Event{" +
+                "myTitle='" + myTitle + '\'' +
+                '}';
+    }
 }
